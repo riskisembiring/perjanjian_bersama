@@ -43,7 +43,7 @@ function AjukanPb() {
         files: uploadedFiles,
       };
 
-      const res = await fetch("http://localhost:5000/ajukan-pb", {
+      const res = await fetch("https://backend-perjanjian-bersama.vercel.app/ajukan-pb", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

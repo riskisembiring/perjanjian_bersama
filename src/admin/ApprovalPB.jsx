@@ -9,7 +9,7 @@ function ApprovalPB() {
 
   const fetchData = async () => {
     try {
-      const res = await fetch("http://localhost:5000/approval-pb");
+      const res = await fetch("https://backend-perjanjian-bersama.vercel.app/approval-pb");
       const result = await res.json();
       setData(result);
     } catch (error) {
@@ -29,7 +29,7 @@ function ApprovalPB() {
 
   const handleUpdateStatus = async (id, status) => {
     try {
-      const res = await fetch(`http://localhost:5000/approval-pb/${id}`, {
+      const res = await fetch(`https://backend-perjanjian-bersama.vercel.app/approval-pb/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status }),

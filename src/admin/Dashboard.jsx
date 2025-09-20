@@ -13,7 +13,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await fetch("http://localhost:5000/stats");
+        const res = await fetch("https://backend-perjanjian-bersama.vercel.app/stats");
         if (!res.ok) throw new Error("Gagal fetch data");
         const data = await res.json();
 

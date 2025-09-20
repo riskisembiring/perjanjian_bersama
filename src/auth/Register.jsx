@@ -14,7 +14,7 @@ function Register({ onSwitch }) {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/add-user", {
+      const res = await fetch("https://backend-perjanjian-bersama.vercel.app/add-user", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

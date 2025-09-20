@@ -8,7 +8,7 @@ function AccountSettings() {
 
   const fetchAccounts = async () => {
     try {
-      const res = await fetch("http://localhost:5000/accounts");
+      const res = await fetch("https://backend-perjanjian-bersama.vercel.app/accounts");
       const accounts = await res.json();
       setData(accounts);
     } catch (error) {
@@ -18,7 +18,7 @@ function AccountSettings() {
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/accounts/${id}`, {
+      const res = await fetch(`https://backend-perjanjian-bersama.vercel.app/accounts/${id}`, {
         method: "DELETE",
       });
       const result = await res.json();
@@ -37,7 +37,7 @@ function AccountSettings() {
   const handleUpdate = async () => {
     if (!editingUser) return;
     try {
-      const res = await fetch(`http://localhost:5000/accounts/${editingUser.key}/role`, {
+      const res = await fetch(`https://backend-perjanjian-bersama.vercel.app/accounts/${editingUser.key}/role`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ role: newRole }),

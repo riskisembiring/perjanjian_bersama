@@ -9,7 +9,7 @@ function HasilPb() {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) return;
 
-    fetch(`http://localhost:5000/hasil-pb/${user.id}`)
+    fetch(`https://backend-perjanjian-bersama.vercel.app/hasil-pb/${user.id}`)
       .then((res) => res.json())
       .then((result) => setData(result))
       .catch((err) => console.error("Error fetch hasil PB:", err));
