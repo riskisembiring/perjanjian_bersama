@@ -1,0 +1,86 @@
+.info-container {
+  padding: 4rem 8rem;
+  text-align: left;
+  line-height: 1.8;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #f0f4ff, #e8f0f7);
+  min-height: 100vh;
+}
+
+.info-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #007bff;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  position: relative;
+}
+
+.info-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #007bff;
+  margin: 0.8rem auto 0;
+  border-radius: 2px;
+}
+
+.info-intro {
+  font-size: 1.15rem;
+  color: #333;
+  margin-bottom: 2.5rem;
+  text-align: justify;
+  line-height: 1.9;
+}
+
+.info-section {
+  margin-bottom: 2.5rem;
+  background: #fff;
+  padding: 1.8rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-section:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.info-subtitle {
+  font-size: 1.6rem;
+  color: #444;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  border-left: 4px solid #007bff;
+  padding-left: 0.6rem;
+}
+
+.info-list {
+  padding-left: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.info-list li {
+  margin-bottom: 0.8rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .info-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .info-title {
+    font-size: 2rem;
+  }
+
+  .info-subtitle {
+    font-size: 1.3rem;
+  }
+
+  .info-intro {
+    font-size: 1rem;
+  }
+}

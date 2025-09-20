@@ -1,0 +1,97 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;         /* full height */
+  width: 100%;
+  background: linear-gradient(135deg, #e0eafc, #cfdef3); /* gradasi biar modern */
+  font-family: "Segoe UI", Arial, sans-serif;
+  padding: 2rem;             /* tambahan padding biar konten tidak nempel pinggir */
+}
+
+.form {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #007bff;
+  font-weight: bold;
+}
+
+
+
+.form-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #333;
+}
+
+.form-group input[type="text"] {
+  border: 1px solid #ccc;
+  padding: 0.6rem;
+  border-radius: 8px;
+  background: #fdfdfd;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.form-group input[type="file"] {
+  border: 1px solid #ccc;
+  padding: 0.6rem;
+  border-radius: 8px;
+  background: #fdfdfd;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.form-group input[type="file"]:hover {
+  border-color: #007bff;
+  background: #f8faff;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 1rem;
+  background: #007bff;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.submit-btn:hover {
+  background: #0056b3;
+  transform: scale(1.02);
+}
+
+@media (max-width: 600px) {
+  .form {
+    padding: 2rem 1.2rem;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+}

@@ -1,0 +1,30 @@
+/* Container styling */
+.hasilpb-container {
+  display: flex;
+  justify-content: center; /* center horizontal */
+  align-items: center;    /* center vertical */
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #f0f5ff, #e6ecf7); /* full background */
+  padding: 2rem;
+}
+
+/* Wrapper untuk tabel */
+.hasilpb-table-wrapper {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  max-width: 500px;
+  width: 100%;
+}
+
+/* Title styling */
+.hasilpb-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #1890ff;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}

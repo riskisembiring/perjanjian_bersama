@@ -1,0 +1,41 @@
+.dashboard-container {
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card .icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.user-card {
+  border-top: 4px solid #1890ff;
+}
+
+.pengajuan-card {
+  border-top: 4px solid #faad14;
+}
+
+.dokumen-card {
+  border-top: 4px solid #52c41a;
+}
