@@ -6,10 +6,15 @@ function ApprovalPB() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState({});
   const [selectedId, setSelectedId] = useState(null);
+  const [rejectVisible, setRejectVisible] = useState(false);
+  const [alasanTolak, setAlasanTolak] = useState("");
 
   const fetchData = async () => {
     try {
-      const res = await fetch("https://backend-perjanjian-bersama.vercel.app/approval-pb");
+      const res = await fetch(
+        "https://backend-perjanjian-bersama.vercel.app/approval-pb"
+        // "http://localhost:5000/approval-pb"
+      );
       const result = await res.json();
       setData(result);
     } catch (error) {
@@ -27,19 +32,22 @@ function ApprovalPB() {
     setIsModalVisible(true);
   };
 
-  const handleUpdateStatus = async (id, status) => {
+  const handleUpdateStatus = async (id, status, alasan = "") => {
     try {
-      const res = await fetch(`https://backend-perjanjian-bersama.vercel.app/approval-pb/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status }),
-      });
+      const res = await fetch(
+        `https://backend-perjanjian-bersama.vercel.app/approval-pb/${id}`,
+        // `http://localhost:5000/approval-pb/${id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ status, alasan }),
+        }
+      );
 
       const result = await res.json();
       if (res.ok) {
         message.success(result.message);
-        fetchData(); // refresh data
-        setIsModalVisible(false); // tutup modal setelah update
+        fetchData();
       } else {
         message.error("Gagal update status: " + result.message);
       }
@@ -73,6 +81,11 @@ function ApprovalPB() {
       ),
     },
     {
+      title: "Alasan",
+      dataIndex: "alasan",
+      key: "alasan",
+    },
+    {
       title: "Aksi",
       key: "aksi",
       align: "center",
@@ -93,8 +106,12 @@ function ApprovalPB() {
   return (
     <div>
       <h2>Approval Permohonan PB</h2>
-      <Table columns={columns} dataSource={data} rowKey="id" pagination={false} />
-
+      <Table
+        columns={columns}
+        dataSource={data}
+        rowKey="id"
+        pagination={false}
+      />
       <Modal
         title="📂 Dokumen Pengajuan PB"
         open={isModalVisible}
@@ -103,14 +120,20 @@ function ApprovalPB() {
           <Button
             key="approve"
             type="primary"
-            onClick={() => handleUpdateStatus(selectedId, "Disetujui")}
+            onClick={() => {
+              handleUpdateStatus(selectedId, "Disetujui")
+              setIsModalVisible(false);
+            }}
           >
             ✅ Setujui
           </Button>,
           <Button
             key="reject"
             danger
-            onClick={() => handleUpdateStatus(selectedId, "Ditolak")}
+            onClick={() => {
+              setIsModalVisible(false);
+              setRejectVisible(true);
+            }}
           >
             ❌ Tolak
           </Button>,
@@ -147,6 +170,36 @@ function ApprovalPB() {
           </ul>
         )}
       </Modal>
+      <Modal
+        title="Alasan Penolakan"
+        open={rejectVisible}
+        onCancel={() => setRejectVisible(false)}
+        footer={[
+          <Button key="cancel" onClick={() => setRejectVisible(false)}>
+            Batal
+          </Button>,
+          <Button
+            key="submit"
+            danger
+            onClick={() => {
+              handleUpdateStatus(selectedId, "Ditolak", alasanTolak);
+              setRejectVisible(false);
+              setAlasanTolak(""); // reset
+            }}
+          >
+            Kirim Penolakan
+          </Button>,
+        ]}
+      >
+        <textarea
+          value={alasanTolak}
+          onChange={(e) => setAlasanTolak(e.target.value)}
+          placeholder="Tuliskan alasan penolakan..."
+          rows={4}
+          style={{ width: "100%", padding: "8px" }}
+        />
+      </Modal>
+      ;
     </div>
   );
 }

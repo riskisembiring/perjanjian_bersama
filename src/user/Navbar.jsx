@@ -49,8 +49,15 @@ function Navbar({ onLogout }) {
 
   return (
     <>
-      <nav style={styles.navbar}>
-        <div style={styles.logo}>Perjanjian Bersama Web</div>
+    <nav style={styles.navbar}>
+      <div style={styles.logoContainer}>
+        <img 
+          src="./logo.jpg"
+          alt="Logo" 
+          style={{ height: "40px", marginRight: "8px", borderRadius: "50%" }} 
+        />
+        <span style={styles.logoText}>Perjanjian Bersama (PB)</span>
+      </div>
         <ul style={styles.navLinks}>
           <li><Link to="/" style={styles.link}>Informasi PB</Link></li>
           <li><Link to="/AjukanPb" style={styles.link}>Ajukan PB</Link></li>
@@ -87,9 +94,17 @@ const styles = {
     background: "#007bff",
     color: "#fff",
   },
+  logoContainer: {
+    display: "flex",
+    alignItems: "center",
+  },
+  logoText: {
+    fontSize: "20px",
+    // fontWeight: "bold",
+    color: "#000",
+  },
   logo: {
     fontSize: "1.2rem",
-    fontWeight: "bold",
   },
   navLinks: {
     listStyle: "none",

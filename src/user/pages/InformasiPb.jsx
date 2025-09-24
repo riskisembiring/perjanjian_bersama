@@ -3,7 +3,7 @@ import "./css/InformasiPb.css";
 function InformasiPb() {
   return (
     <div className="info-container">
-      <h1 className="info-title">Perjanjian Bersama (PB)</h1>
+      <h1 className="info-title">Perjanjian Bersama (PB) Pengadilan Negeri Ternate</h1>
       <p className="info-intro">
         Perjanjian Bersama yang telah didaftarkan ke <b>Pengadilan Hubungan Industrial (PHI) </b> 
         adalah kesepakatan tertulis antara pengusaha dan pekerja untuk menyelesaikan perselisihan 

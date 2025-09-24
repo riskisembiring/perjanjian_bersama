@@ -10,6 +10,7 @@ function HasilPb() {
     if (!user) return;
 
     fetch(`https://backend-perjanjian-bersama.vercel.app/hasil-pb/${user.id}`)
+    // fetch(`http://localhost:5000/hasil-pb/${user.id}`)
       .then((res) => res.json())
       .then((result) => setData(result))
       .catch((err) => console.error("Error fetch hasil PB:", err));
@@ -26,7 +27,7 @@ function HasilPb() {
       render: (status) => (
         <Tag
           color={
-            status === "Selesai"
+            status === "Diterima"
               ? "green"
               : status === "Ditolak"
               ? "red"
@@ -37,6 +38,12 @@ function HasilPb() {
         </Tag>
       ),
     },
+    {
+      title: "Alasan",
+      dataIndex: "alasan",
+      key: "alasan",
+      render: (alasan) => (alasan ? alasan : "-"),
+    }
   ];
 
   return (
@@ -44,6 +51,7 @@ function HasilPb() {
       <div className="hasilpb-table-wrapper">
         <h2 className="hasilpb-title">📑 Hasil PB</h2>
         <Table columns={columns} dataSource={data} pagination={false} />
+        <h4 className="hasilpb-subtitle">* Hasil proses verifikasi akan di infokan melalui kontak resmi Pengadilan Negeri Ternate.</h4>
       </div>
     </div>
   );

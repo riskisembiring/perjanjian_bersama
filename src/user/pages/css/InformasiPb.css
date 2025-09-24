@@ -3,8 +3,11 @@
   text-align: left;
   line-height: 1.8;
   font-family: "Segoe UI", Arial, sans-serif;
-  background: linear-gradient(135deg, #f0f4ff, #e8f0f7);
-  min-height: 100vh;
+  background-image: url("/background.jpg");
+  background-size:contain ;   /* biar penuh */
+  background-position:top; /* posisikan di tengah */
+  background-repeat: repeat; /* jangan diulang */
+  min-height: 150vh;
 }
 
 .info-title {
@@ -36,11 +39,12 @@
 
 .info-section {
   margin-bottom: 2.5rem;
-  background: #fff;
+  background: rgba(247, 217, 217, 0.6); /* 0.6 = 60% opacity */
   padding: 1.8rem;
   border-radius: 14px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #000; /* teks tetap hitam */
 }
 
 .info-section:hover {
