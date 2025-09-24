@@ -1,14 +1,17 @@
-import { Layout, Menu, Spin, Modal } from "antd";
+import { Layout, Menu, Spin, Modal, Button } from "antd";
 import {
   UserOutlined,
   FileSearchOutlined,
   DashboardOutlined,
   LogoutOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
 } from "@ant-design/icons";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useSwipeable } from "react-swipeable";
 
-const { Sider, Content } = Layout;
+const { Sider, Content, Header } = Layout;
 
 function AdminLayout({ onLogout }) {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -19,6 +22,9 @@ function AdminLayout({ onLogout }) {
 
   // ✅ AntD v5 modal hook
   const [modal, contextHolder] = Modal.useModal();
+
+  // ✅ state collapse untuk sidebar
+  const [collapsed, setCollapsed] = useState(false);
 
   const handleLogout = () => {
     modal.confirm({
@@ -31,7 +37,7 @@ function AdminLayout({ onLogout }) {
         localStorage.removeItem("authToken");
         localStorage.removeItem("role");
         localStorage.removeItem("user");
-        if (onLogout) onLogout(); // reset state di App.jsx → balik ke Login
+        if (onLogout) onLogout();
       },
     });
   };
@@ -43,9 +49,24 @@ function AdminLayout({ onLogout }) {
     return () => clearTimeout(timeout);
   }, [location.pathname]);
 
+  // ✅ Swipe handler
+  const handlers = useSwipeable({
+    onSwipedLeft: () => setCollapsed(true),   // geser kiri → sembunyikan sidebar
+    onSwipedRight: () => setCollapsed(false), // geser kanan → tampilkan sidebar
+    preventDefaultTouchmoveEvent: false,
+    trackMouse: false,
+  });
+
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      <Sider theme="dark">
+    <Layout style={{ minHeight: "100vh" }} {...handlers}>
+      <Sider
+        theme="dark"
+        collapsible
+        collapsed={collapsed}
+        collapsedWidth="0"
+        trigger={null} // biar tanpa tombol bawaan
+        breakpoint="md"
+      >
         <div
           style={{
             color: "#fff",
@@ -82,7 +103,26 @@ function AdminLayout({ onLogout }) {
           </Menu.Item>
         </Menu>
       </Sider>
+
       <Layout>
+        {/* ✅ Header dengan tombol toggle */}
+        <Header
+          style={{
+            padding: "0 16px",
+            background: "#fff",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <Button
+            type="text"
+            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            onClick={() => setCollapsed(!collapsed)}
+            style={{ fontSize: "18px", marginRight: "16px" }}
+          />
+          <h3 style={{ margin: 0 }}>Admin Panel</h3>
+        </Header>
+
         <Content style={{ margin: "16px", minHeight: "80vh" }}>
           {loading ? (
             <div
@@ -101,7 +141,7 @@ function AdminLayout({ onLogout }) {
         </Content>
       </Layout>
 
-      {/* ✅ WAJIB render untuk modal di AntD v5 */}
+      {/* ✅ Wajib render modal context holder */}
       {contextHolder}
     </Layout>
   );

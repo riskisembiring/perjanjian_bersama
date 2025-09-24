@@ -112,6 +112,7 @@ const styles = {
     gap: "1.5rem",
     margin: 0,
     padding: 0,
+    transition: "color 0.3s"
   },
   link: {
     color: "#fff",

@@ -16,13 +16,26 @@ function AjukanPb() {
     setIsModalVisible(true);
   }, []);
 
-  // ✅ Simpan file ke cache saja (tidak upload dulu)
-  const handleFileChange = (e) => {
-    const { name, files } = e.target;
-    const file = files[0];
-    if (!file) return;
-    setSelectedFiles((prev) => ({ ...prev, [name]: file }));
-  };
+const handleFileChange = (e) => {
+  const { name, files } = e.target;
+  const file = files[0];
+  if (!file) return;
+
+  // cek hanya PDF
+  if (file.type !== "application/pdf") {
+    alert("Hanya file PDF yang diperbolehkan!");
+    return;
+  }
+
+  // cek ukuran maksimal 2MB
+  const maxSize = 2 * 1024 * 1024; // 2MB dalam byte
+  if (file.size > maxSize) {
+    alert("Ukuran file maksimal 2MB!");
+    return;
+  }
+
+  setSelectedFiles((prev) => ({ ...prev, [name]: file }));
+};
 
   // ✅ Submit (baru upload semua file ke Upload.io di sini)
   const doSubmit = async () => {
@@ -83,47 +96,48 @@ function AjukanPb() {
               value={namaPemohon}
               onChange={(e) => setNamaPemohon(e.target.value)}
               placeholder="Masukkan nama pemohon"
+              maxLength={50}
               required
             />
           </div>
 
           <div className="form-group">
             <label>📄 Surat Permohonan PB</label>
-            <input type="file" name="suratPermohonan" onChange={handleFileChange} required />
+            <input type="file" name="suratPermohonan" onChange={handleFileChange} required accept="application/pdf"/>
             {selectedFiles["suratPermohonan"] && <small>{selectedFiles["suratPermohonan"].name}</small>}
           </div>
 
           <div className="form-group">
             <label>📑 Perjanjian Bersama</label>
-            <input type="file" name="perjanjianBersama" onChange={handleFileChange} required />
+            <input type="file" name="perjanjianBersama" onChange={handleFileChange} required accept="application/pdf"/>
             {selectedFiles["perjanjianBersama"] && <small>{selectedFiles["perjanjianBersama"].name}</small>}
           </div>
 
           <div className="form-group">
             <label>🖋️ Surat Kuasa</label>
-            <input type="file" name="suratKuasa" onChange={handleFileChange} required />
+            <input type="file" name="suratKuasa" onChange={handleFileChange} required accept="application/pdf"/>
             {selectedFiles["suratKuasa"] && <small>{selectedFiles["suratKuasa"].name}</small>}
           </div>
 
           <div className="form-group">
             <label>🏢 Akte Pendirian Perusahaan</label>
-            <input type="file" name="aktePerusahaan" onChange={handleFileChange} required />
+            <input type="file" name="aktePerusahaan" onChange={handleFileChange} required accept="application/pdf"/>
             {selectedFiles["aktePerusahaan"] && <small>{selectedFiles["aktePerusahaan"].name}</small>}
           </div>
 
           <div className="form-group">
             <label>💰 Tanda Pembayaran</label>
-            <input type="file" name="tandaPembayaran" onChange={handleFileChange} required />
+            <input type="file" name="tandaPembayaran" onChange={handleFileChange} required accept="application/pdf"/>
             {selectedFiles["tandaPembayaran"] && <small>{selectedFiles["tandaPembayaran"].name}</small>}
           </div>
 
           <div className="form-group">
             <label>🆔 KTP Pegawai</label>
-            <input type="file" name="ktpPegawai" onChange={handleFileChange} required />
+            <input type="file" name="ktpPegawai" onChange={handleFileChange} required accept="application/pdf"/>
             {selectedFiles["ktpPegawai"] && <small>{selectedFiles["ktpPegawai"].name}</small>}
           </div>
 
-          <button type="submit" className="submit-btn" disabled={loading}>
+          <button type="submit" className="submit-btn" disabled={loading} accept="application/pdf">
             {loading ? "⏳ Mengirim..." : "Kirim Dokumen"}
           </button>
         </form>

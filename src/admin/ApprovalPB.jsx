@@ -106,11 +106,14 @@ function ApprovalPB() {
   return (
     <div>
       <h2>Approval Permohonan PB</h2>
-      <Table
+         <Table
         columns={columns}
         dataSource={data}
-        rowKey="id"
-        pagination={false}
+        pagination={{ pageSize: 10 }}
+        rowKey="no"
+        bordered
+        size="middle"
+        className="custom-table"
       />
       <Modal
         title="📂 Dokumen Pengajuan PB"
@@ -122,6 +125,7 @@ function ApprovalPB() {
             type="primary"
             onClick={() => {
               handleUpdateStatus(selectedId, "Disetujui")
+              setAlasanTolak("");
               setIsModalVisible(false);
             }}
           >
@@ -197,6 +201,7 @@ function ApprovalPB() {
           placeholder="Tuliskan alasan penolakan..."
           rows={4}
           style={{ width: "100%", padding: "8px" }}
+          maxLength={200}
         />
       </Modal>
       ;

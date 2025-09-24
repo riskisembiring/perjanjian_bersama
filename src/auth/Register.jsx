@@ -61,6 +61,7 @@ function Register({ onSwitch }) {
           value={nama}
           onChange={(e) => setNama(e.target.value)}
           style={styles.input}
+          maxLength={30}
           required
         />
         <input
@@ -69,6 +70,7 @@ function Register({ onSwitch }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           style={styles.input}
+          maxLength={30}
           required
         />
         <input
@@ -77,6 +79,7 @@ function Register({ onSwitch }) {
           value={namaPerusahaan}
           onChange={(e) => setNamaPerusahaan(e.target.value)}
           style={styles.input}
+          maxLength={30}
           required  
         />
         <input
@@ -85,6 +88,7 @@ function Register({ onSwitch }) {
           value={noHp}
           onChange={(e) => setNoHp(e.target.value)}
           style={styles.input}
+          maxLength={15}
           required
         />
         <input
@@ -93,6 +97,7 @@ function Register({ onSwitch }) {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           style={styles.input}
+          maxLength={30}
           required
         />
         <input
@@ -101,6 +106,7 @@ function Register({ onSwitch }) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           style={styles.input}
+          maxLength={30}
           required
         />
 
@@ -126,7 +132,9 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    background: "#f0f2f5",
+    backgroundImage: 'url("/background.jpg")', 
+    backgroundSize: "cover",
+    backgroundPosition: "center", 
   },
   form: {
     display: "flex",

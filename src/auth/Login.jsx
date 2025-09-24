@@ -45,6 +45,7 @@ function Login({ onSwitch, onSuccess }) {
   return (
     <div style={styles.container}>
       <form onSubmit={handleSubmit} style={styles.form}>
+        <img src="/logo2.png" alt="Logo" style={styles.logo}/>
         <h2 style={styles.title}>Login</h2>
         <input
           type="text"
@@ -52,6 +53,7 @@ function Login({ onSwitch, onSuccess }) {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           style={styles.input}
+          maxLength={30}
           required
         />
         <input
@@ -60,6 +62,7 @@ function Login({ onSwitch, onSuccess }) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           style={styles.input}
+          maxLength={30}
           required
         />
         <button type="submit" style={styles.button} disabled={loading}>
@@ -83,14 +86,23 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    background: "#f0f2f5",
+    backgroundImage: 'url("/background.jpg")', 
+    backgroundSize: "cover",
+    backgroundPosition: "center", 
+  },
+  logo: {
+    display: "block",
+    margin: "0 auto",
+    width: "100px",
+    height: "100px",
+    borderRadius: "50px",
   },
   form: {
     display: "flex",
     flexDirection: "column",
     padding: "2rem",
     borderRadius: "10px",
-    background: "#fff",
+    background: "#ffffffbd",
     boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
     width: "350px",
   },
